@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcPlants.Data;
+using MvcPlants.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MvcPlantsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MvcPlantsContext") ?? throw new InvalidOperationException("Connection string 'MvcPlantsContext' not found.")));
@@ -9,6 +11,13 @@ builder.Services.AddDbContext<MvcPlantsContext>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

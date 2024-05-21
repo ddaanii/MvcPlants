@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MvcPlant.Data;
+using MvcPlants.Data;
 using System;
 using System.Linq;
 
@@ -22,7 +22,6 @@ public static class SeedData
             context.Plant.AddRange(
                 new Plant
                 {	
-                	Id = 0
                    	Name = "Basella alba",
                     ImgPath = "https://d2seqvvyy3b8p2.cloudfront.net/018d7852a70888b5e71815b778ac1576.jpg",
                     Family = "Basellaceae",
@@ -33,7 +32,6 @@ public static class SeedData
                 },
                 new Plant
                 {	
-                	Id = 1
                    	Name = "Digitalis purpurea",
                     ImgPath = "https://storage.googleapis.com/powop-assets/kew_profiles/KPPCONT_034322_fullsize.jpg",
                     Family = "Plantaginaceae",
@@ -44,7 +42,6 @@ public static class SeedData
                 },
                 new Plant
                 {	
-                	Id = 2
                    	Name = "Alismataceae",
                     ImgPath = "https://storage.googleapis.com/powop-assets/kew_profiles/STAG_001842_fullsize.jpg",
                     Family = "Alismataceae",
@@ -55,7 +52,6 @@ public static class SeedData
                 },
                 new Plant
                 {	
-                	Id = 3
                    	Name = "Adenophora",
                     ImgPath = "https://d2seqvvyy3b8p2.cloudfront.net/b31d5146b57ff2a6d1292f70f4be94ad.jpg",
                     Family = "Campanulaceae",
@@ -63,7 +59,7 @@ public static class SeedData
                     Species = "",
                     Origin = "Altay",
 
-                },
+                }
             );
             context.SaveChanges();
         }
