@@ -1,25 +1,25 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MvcMovie.Data;
+using MvcPlant.Data;
 using System;
 using System.Linq;
 
-namespace MvcMovie.Models;
+namespace MvcPlants.Models;
 
 public static class SeedData
 {
     public static void Initialize(IServiceProvider serviceProvider)
     {
-        using (var context = new MvcMovieContext(
+        using (var context = new MvcPlantsContext(
             serviceProvider.GetRequiredService<
-                DbContextOptions<MvcMovieContext>>()))
+                DbContextOptions<MvcPlantsContext>>()))
         {
-            // Look for any movies.
-            if (context.Movie.Any())
+            // Look for any Plants.
+            if (context.Plant.Any())
             {
                 return;   // DB has been seeded
             }
-            context.Movie.AddRange(
+            context.Plant.AddRange(
                 new Plant
                 {	
                 	Id = 0
