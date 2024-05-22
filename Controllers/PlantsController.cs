@@ -19,15 +19,41 @@ namespace MvcPlants.Controllers
             _context = context;
         }
 
-        // GET: Plants1
-        public async Task<IActionResult> Index()
+        // GET: Plants
+        public async Task<IActionResult> Index(string plantFamily, string searchString)
         {
-              return _context.Plant != null ? 
-                          View(await _context.Plant.ToListAsync()) :
-                          Problem("Entity set 'MvcPlantsContext.Plant'  is null.");
+            if (_context.Plant == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
+
+            // Use LINQ to get list of genres.
+            IQueryable<string> familyQuery = from p in _context.Plant
+                                            orderby p.Family
+                                            select p.Family;
+            var plants= from p in _context.Plant
+                         select p;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                plants = plants.Where(s => s.Name!.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(plantFamily))
+            {
+                plants = plants.Where(x => x.Family == plantFamily);
+            }
+
+            var plantFamilyVM = new PlantFamilyViewModel
+            {
+                Families = new SelectList(await familyQuery.Distinct().ToListAsync()),
+                Plants = await plants.ToListAsync()
+            };
+
+            return View(plantFamilyVM);
         }
 
-        // GET: Plants1/Details/5
+        // GET: Plants/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Plant == null)
@@ -45,13 +71,13 @@ namespace MvcPlants.Controllers
             return View(plant);
         }
 
-        // GET: Plants1/Create
+        // GET: Plants/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Plants1/Create
+        // POST: Plants/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -67,7 +93,7 @@ namespace MvcPlants.Controllers
             return View(plant);
         }
 
-        // GET: Plants1/Edit/5
+        // GET: Plants/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Plant == null)
@@ -83,7 +109,7 @@ namespace MvcPlants.Controllers
             return View(plant);
         }
 
-        // POST: Plants1/Edit/5
+        // POST: Plants/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -118,7 +144,7 @@ namespace MvcPlants.Controllers
             return View(plant);
         }
 
-        // GET: Plants1/Delete/5
+        // GET: Plants/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Plant == null)
@@ -136,7 +162,7 @@ namespace MvcPlants.Controllers
             return View(plant);
         }
 
-        // POST: Plants1/Delete/5
+        // POST: Plants/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
