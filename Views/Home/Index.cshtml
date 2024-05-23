@@ -2,7 +2,263 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html>
+	<head>
+
+	    <title>MvcPlants</title>
+
+	    <meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link href='https://fonts.googleapis.com/css?family=GFS Didot' rel='stylesheet'>
+	    <style type="text/css">
+	    	body{
+	    		background-color: antiquewhite;
+	    		overflow-x: hidden;
+	    	}
+	    	*{
+	    		z-index: 10;
+	    	}
+	    	.grid-container{
+	    		display: grid;
+	    		grid-template-columns: 1fr 1fr 1fr;
+	    		grid-template-rows: 30vh 30vh 30vh;
+	    		gap: 2rem;
+	    		padding: 2rem 5rem;
+	    	}
+	    	.grid-container > .card{
+	    		align-items: center;
+	    		justify-items: center;
+	    		background-color: lightpink;
+	    		height: 25vh;
+	    		width: fit-content;
+	    		text-align: center;
+	    		border-radius: 20px;
+	    	}
+
+
+	    	.outer-grid{
+	    		display: grid;
+	    		grid-template-columns: 100%;
+	    		grid-template-rows: 60vh auto;
+	    	}
+
+	    	.upper-section{
+	    		grid-area: 1/1;
+	    		display: grid;
+	    		grid-template-columns: 40% 60%;
+	    		grid-template-rows: 100%;
+	    		margin: 0rem 5rem 5rem 5rem;
+
+	    	}
+
+	    	.upper-section > .upper-box{
+	    		font-family: 'GFS Didot' !important;
+	    	}
+
+	    	.upper-section > .upper-box > h3{
+	    		font-size: 70pt;
+	    		font-weight: bold;
+	    	}
+
+	    	.upper-section > .upper-box > h6{
+	    		font-size: 20pt;
+	    		font-weight: 300;
+	    		font-style: italic;
+	    	}
+
+	    	.upper-section > .upper-img{
+	    		z-index: 5 !important;
+	    		align-self: center;
+	    		justify-self: center;
+	    		object-fit: scale-down;
+	    	}
+
+
+	    	figure {
+			  display: grid;
+			  grid-template-columns: 100%;
+			  grid-template-rows: 100%;
+			  border-radius: 1rem;
+			  overflow: hidden;
+			  cursor: pointer;
+			  margin: 0;
+
+			}
+
+			figure img{
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			figure > * {
+			  grid-area: 1/1;
+			  transition: .4s;
+			}
+
+			figure figcaption {
+
+			  display: grid;
+			  max-height: 100%;
+			  grid-template-rows: 3fr 1fr .4fr;
+
+			  align-items: end;
+
+			  font-family: sans-serif;
+			  font-size: 2.3rem;
+			  font-weight: bold;
+			  color: white;
+
+			  padding: .75rem;
+			  background: var(--c,#0009);
+			  clip-path: inset(0 var(--_i,100%) 0 0);
+			  -webkit-mask:
+			    linear-gradient(#000 0 0),
+			    linear-gradient(#000 0 0);
+			  -webkit-mask-composite: xor;
+			  -webkit-mask-clip: text, padding-box;
+
+			  size: inherit;
+
+			}
+
+			figure figcaption .full-name{
+				grid-area: 3/1;
+				font-family: sans-serif;
+				font-size: 1.3rem;
+				font-weight: normal;
+				color: white;
+				font-style: italic;
+				margin: 0;
+				padding: 0;
+
+			}
+
+
+			figure figcaption .short-name{
+				margin: 0;
+				grid-area: 2/1;
+			}
+
+			figure:hover figcaption{
+			  --_i: 0%;
+
+			}
+
+			figure:hover img {
+			  transform: scale(1.2);
+			}
+
+
+			.ten h3 {
+			  font-size:10rem; font-weight:500; text-transform:uppercase;
+			}
+			.ten h3:before {
+			    background-color: #c50000;
+			    border-radius: 0.25rem;
+			    content: '';
+			    display: block;
+			    height: 0.25rem;
+			    width: 20%;
+			    margin-bottom: 1.25rem;
+			}
+
+			.skewed {
+			  position: absolute;
+			  top: 0;
+			  bottom: 0;
+			  right: 0;
+			  left: 0;
+			  width: 100%;
+			  height: 70vh;
+			  background: whitesmoke;
+			  z-index: 0 !important;
+			  transform: skewY(5deg);
+			  transform-origin: top right;
+			  box-shadow: 0.5rem -2rem 3rem 1rem #0009; 
+			  background-image: url('https://media.istockphoto.com/id/1489727923/photo/white-recycled-paper-texture.webp?b=1&s=170667a&w=0&k=20&c=7IJwAbH2EHQvOkMSbZMxkezsxkCYsmbUWYlLgyE1KiE=');
+			}
+
+	    </style>
+
+	</head>
+	<body>
+	  	<div class="skewed"></div>
+		<div class="outer-grid">
+			<div class="upper-section">
+				<div class="upper-box, ten">
+					<h3>Plants</h3>
+				</div>
+				<img 
+					src="https://clipart-library.com/img/1570738.png" 
+					class="upper-img">
+			</div>
+			
+
+			<div class="card-section">
+				
+				<div class="grid-container">
+					<figure>
+						<img src="640px-Amaryllis_belladonna.jpg">
+						<figcaption>
+							<p class="short-name">Amaryllis</p>
+							<p class="full-name">Amaryllis full name</p>
+						</figcaption>
+					</figure>
+
+					<figure>
+						<img src="https://images.unsplash.com/photo-1612759564127-46d831193aa2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8emlubmlhfGVufDB8fDB8fHww">
+						<figcaption>
+							<p class="short-name">Zinnia</p>
+							<p class="full-name">Zinnia full name</p>
+						</figcaption>
+					</figure>
+
+					<figure>
+						<img src="https://images.pexels.com/photos/326014/pexels-photo-326014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+						<figcaption>
+							<p class="short-name">Dahlia</p>
+							<p class="full-name">Dahlia full name</p>
+						</figcaption>
+					</figure>
+
+					<figure>
+						<img src="https://images.pexels.com/photos/17454553/pexels-photo-17454553/free-photo-of-fire-lily-flower.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+						<figcaption>
+							<p class="short-name">Fire lily</p>
+							<p class="full-name">Fire lily full name</p>
+						</figcaption>
+					</figure>
+
+					<figure>
+						<img src="https://images.pexels.com/photos/414949/pexels-photo-414949.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+						<figcaption>
+							<p class="short-name">Lavender</p>
+							<p class="full-name">Lavender full name</p>
+						</figcaption>
+					</figure>
+
+					<figure>
+						<img src="https://images.pexels.com/photos/1204940/pexels-photo-1204940.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+						<figcaption>
+							<p class="short-name">Hydrangea</p>
+							<p class="full-name">Hydrangea full name</p>
+						</figcaption>
+					</figure>
+
+					<figure>
+						<img src="https://images.pexels.com/photos/2194071/pexels-photo-2194071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+						<figcaption>
+							<p class="short-name">Cherry blossom</p>
+							<p class="full-name">Cherry blossom full name</p>
+						</figcaption>
+					</figure>
+
+
+				</div> 
+			</div>
+		</div>
+	</body>
+</html>

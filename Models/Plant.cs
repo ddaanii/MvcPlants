@@ -13,7 +13,6 @@ namespace MvcPlants.Models
         [Required]
         public string? Name { get; set; }
 
-        [RegularExpression(@"^\b(https ?:\/\/)?[\w -] + (\.[\w -] +)+\b$")]
         [Required]
         public string? ImgPath { get; set; }
 
