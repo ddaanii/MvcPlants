@@ -59,6 +59,36 @@ public static class SeedData
                     Species = "",
                     Origin = "Altay",
 
+                },
+                new Plant
+                {
+                    Name = "Amaryllis Belladonna",
+                    ImgPath = "https://d2seqvvyy3b8p2.cloudfront.net/e48e1d7de52513832ac891b9d3453e43.jpg",
+                    Family = "Amaryllidaceae",
+                    Genus = "Amaryllis",
+                    Species = "",
+                    Origin = "Cape Provinces",
+
+                },
+                new Plant
+                {
+                    Name = "Zinnia Acerosa",
+                    ImgPath = "https://d2seqvvyy3b8p2.cloudfront.net/a59ebb4e575f88fa8722e2f606ba776a.jpg",
+                    Family = "Asteraceae",
+                    Genus = "Zinnia",
+                    Species = "Acerosa",
+                    Origin = "Mexico",
+
+                },
+                new Plant
+                {
+                    Name = "Hydrangea Macrophylla",
+                    ImgPath = "https://d2seqvvyy3b8p2.cloudfront.net/b611b123fbf99bbc43475008c7d09fdb.jpg",
+                    Family = "Hydrangeaceae",
+                    Genus = "Hydrangea",
+                    Species = "Macrophylla",
+                    Origin = "Japan",
+
                 }
             );
             context.SaveChanges();

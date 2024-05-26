@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using MvcPlants.Data;
 using MvcPlants.Models;
@@ -12,7 +13,7 @@ namespace MvcPlants.Controllers
 {
     public class PlantsController : Controller
     {
-        private readonly MvcPlantsContext _context;
+        public readonly MvcPlantsContext _context;
 
         public PlantsController(MvcPlantsContext context)
         {
@@ -20,37 +21,27 @@ namespace MvcPlants.Controllers
         }
 
         // GET: Plants
-        public async Task<IActionResult> Index(string plantFamily, string searchString)
+        public async Task<IActionResult> Index(string searchString)
         {
             if (_context.Plant == null)
             {
-                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+                return Problem("Entity set 'MvcPlantContext.Plant'  is null.");
             }
 
-            // Use LINQ to get list of genres.
-            IQueryable<string> familyQuery = from p in _context.Plant
-                                            orderby p.Family
-                                            select p.Family;
-            var plants= from p in _context.Plant
-                         select p;
+            var plants = from m in _context.Plant
+                         select m;
 
-            if (!string.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString))
             {
                 plants = plants.Where(s => s.Name!.Contains(searchString));
             }
 
-            if (!string.IsNullOrEmpty(plantFamily))
-            {
-                plants = plants.Where(x => x.Family == plantFamily);
-            }
+            var originalList = await plants.ToListAsync();
+            PlantFamilyViewModel plantFamily = new PlantFamilyViewModel();
+            plantFamily.Plants = originalList;
 
-            var plantFamilyVM = new PlantFamilyViewModel
-            {
-                Families = new SelectList(await familyQuery.Distinct().ToListAsync()),
-                Plants = await plants.ToListAsync()
-            };
 
-            return View(plantFamilyVM);
+            return View(plantFamily);
         }
 
         // GET: Plants/Details/5

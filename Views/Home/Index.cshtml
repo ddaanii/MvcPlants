@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model MvcPlants.Models.PlantFamilyViewModel
+
+@{
+    ViewData["Title"] = "Index";
 }
 
 <!DOCTYPE html>
@@ -27,16 +29,6 @@
 	    		gap: 2rem;
 	    		padding: 2rem 5rem;
 	    	}
-	    	.grid-container > .card{
-	    		align-items: center;
-	    		justify-items: center;
-	    		background-color: lightpink;
-	    		height: 25vh;
-	    		width: fit-content;
-	    		text-align: center;
-	    		border-radius: 20px;
-	    	}
-
 
 	    	.outer-grid{
 	    		display: grid;
@@ -54,7 +46,7 @@
 	    	}
 
 	    	.upper-section > .upper-box{
-	    		font-family: 'GFS Didot' !important;
+	    		font-family: 'didot' !important;
 	    	}
 
 	    	.upper-section > .upper-box > h3{
@@ -128,7 +120,7 @@
 				grid-area: 3/1;
 				font-family: sans-serif;
 				font-size: 1.3rem;
-				font-weight: normal;
+				font-weight: 500;
 				color: white;
 				font-style: italic;
 				margin: 0;
@@ -136,10 +128,10 @@
 
 			}
 
-
 			figure figcaption .short-name{
 				margin: 0;
 				grid-area: 2/1;
+				font-weight: 600;
 			}
 
 			figure:hover figcaption{
@@ -152,10 +144,10 @@
 			}
 
 
-			.ten h3 {
-			  font-size:10rem; font-weight:500; text-transform:uppercase;
+			.cool-title h3 {
+			  font-size:10rem; font-weight:500; text-transform:uppercase; margin-top:2rem; font-family: 'didot', serif;
 			}
-			.ten h3:before {
+			.cool-title h3:before {
 			    background-color: #c50000;
 			    border-radius: 0.25rem;
 			    content: '';
@@ -188,7 +180,7 @@
 	  	<div class="skewed"></div>
 		<div class="outer-grid">
 			<div class="upper-section">
-				<div class="upper-box, ten">
+				<div class="upper-box, cool-title">
 					<h3>Plants</h3>
 				</div>
 				<img 
@@ -200,63 +192,19 @@
 			<div class="card-section">
 				
 				<div class="grid-container">
+@foreach (var item in Model.Plants!){
 					<figure>
-						<img src="640px-Amaryllis_belladonna.jpg">
+						<img src="@item.ImgPath">
+						<a asp-controller="Plants" asp-action="Details" asp-route-id="@item.Id"></a>
 						<figcaption>
-							<p class="short-name">Amaryllis</p>
-							<p class="full-name">Amaryllis full name</p>
+							<p class="short-name">@item.Name</p>
+							<p class="full-name">
+								@item.Family,
+								@if (item.Species != null) {@item.Species} else{@item.Genus}
+							</p>
 						</figcaption>
 					</figure>
-
-					<figure>
-						<img src="https://images.unsplash.com/photo-1612759564127-46d831193aa2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8emlubmlhfGVufDB8fDB8fHww">
-						<figcaption>
-							<p class="short-name">Zinnia</p>
-							<p class="full-name">Zinnia full name</p>
-						</figcaption>
-					</figure>
-
-					<figure>
-						<img src="https://images.pexels.com/photos/326014/pexels-photo-326014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-						<figcaption>
-							<p class="short-name">Dahlia</p>
-							<p class="full-name">Dahlia full name</p>
-						</figcaption>
-					</figure>
-
-					<figure>
-						<img src="https://images.pexels.com/photos/17454553/pexels-photo-17454553/free-photo-of-fire-lily-flower.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-						<figcaption>
-							<p class="short-name">Fire lily</p>
-							<p class="full-name">Fire lily full name</p>
-						</figcaption>
-					</figure>
-
-					<figure>
-						<img src="https://images.pexels.com/photos/414949/pexels-photo-414949.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-						<figcaption>
-							<p class="short-name">Lavender</p>
-							<p class="full-name">Lavender full name</p>
-						</figcaption>
-					</figure>
-
-					<figure>
-						<img src="https://images.pexels.com/photos/1204940/pexels-photo-1204940.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-						<figcaption>
-							<p class="short-name">Hydrangea</p>
-							<p class="full-name">Hydrangea full name</p>
-						</figcaption>
-					</figure>
-
-					<figure>
-						<img src="https://images.pexels.com/photos/2194071/pexels-photo-2194071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-						<figcaption>
-							<p class="short-name">Cherry blossom</p>
-							<p class="full-name">Cherry blossom full name</p>
-						</figcaption>
-					</figure>
-
-
+}
 				</div> 
 			</div>
 		</div>
