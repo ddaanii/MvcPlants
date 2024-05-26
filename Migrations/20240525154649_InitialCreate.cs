@@ -16,12 +16,12 @@ namespace MvcPlants.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImgPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Family = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Genus = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Species = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Origin = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    ImgPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Family = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: true),
+                    Genus = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: true),
+                    Species = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: true),
+                    Origin = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

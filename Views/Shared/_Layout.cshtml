@@ -7,9 +7,21 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MvcPlants.styles.css" asp-append-version="true" />
+
+    <style>
+        footer{
+            background-color: whitesmoke;
+            padding-left: 2rem;
+            box-shadow: 0rem 2.5rem 3rem 2rem #0009;
+            border-top: 1px solid lightgray;
+        }
+        .navbar{
+            margin:0 !important;
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <header style="z-index:30;">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcPlants</a>
@@ -20,25 +32,25 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Plants" asp-action="Index">Index</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div style="z-index:15;">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - MvcPlants - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div>
+            &copy; 2024 - MvcPlants
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
