@@ -161,9 +161,43 @@
         }
 
         .search-bar:focus {
-            background-color: whitesmoke;
             border: 1px solid #0009;
             transition-duration: .2s;
+        }
+
+        .filter-search-bar{
+            border-radius: 1rem;
+            padding: .5rem;
+            border: 1px solid lightgray;
+            width: 20vw;
+            outline: none;
+        }
+
+        .filter-search-bar:focus {
+            border: 1px solid #0009;
+            transition-duration: .2s;
+        }
+
+        .filter-search-button{
+            width: fit-content;
+            padding: .5rem;
+            border-radius: 1rem;
+            border: 1px solid lightgray;
+        }
+
+        .clear-filters{
+            width: fit-content;
+            padding: .5rem;
+            border-radius: 1rem;
+            border: 1px solid lightgray;
+        }
+
+        .searchFields{
+            margin-bottom: 1rem;
+            background-color: floralwhite;
+            border-radius: 1rem;
+            padding: .5rem 1rem;
+            border: 1px solid lightgray;
         }
 
         .add {
@@ -193,11 +227,9 @@
             margin-right: .5rem;
         }
 
-        .filter-dropdown {
-            width: fit-content;
-            padding: .5rem;
-            border-radius: 1rem;
-            border: 1px solid lightgray;
+        .filter-button{
+            border:none;
+            background: none;
         }
 
         .skewed {
@@ -235,19 +267,35 @@
     <div class="action-bar">
 
         <form asp-controller="Plants" asp-action="Index" method="get">
-            <p>
+            <!--p>
                 <select asp-for="PlantFamily" asp-items="Model.Families" class="filter-dropdown">
                     <option value="">All</option>
                 </select>
                 <input type="text" asp-for="SearchString" class="search-bar" />
                 <input type="submit" value=" Search " class="submit-button" />
-            </p>
+                </p>-->
+            
+            <button type="button" onclick="toggleFilters()" class="filter-button">
+                <span class="material-symbols-outlined">
+                    filter_list
+                </span>
+            </button>
+            <button id="clearFiltersButton" type="button" style="display: none;" onclick="clearFilters()" class="clear-filters">Elimina Filtri</button>
+            <input type="text" asp-for="SearchString" class="search-bar" placeholder="Search..." />
+                <input type="submit" value=" Search " class="submit-button" />
         </form>
 
         <p class="add">
             <a asp-action="Create" style="height: fit-content; display: inline-block; margin-top: .4rem;"><span class="material-symbols-outlined">add</span></a>
         </p>
 
+    </div>
+
+    <div class="searchFields" style="display: none;">
+            <input type="text" id="genusInput" placeholder="Genus" class="filter-search-bar">
+            <input type="text" id="speciesInput" placeholder="Species" class="filter-search-bar">
+        <input type="text" id="originInput" placeholder="Origin" class="filter-search-bar">
+        <button onclick="searchPlants()" class="filter-search-button"> Search </button>
     </div>
 
     <div class="table-grid">
@@ -275,7 +323,7 @@
         <tbody>
 @foreach (var item in Model.Plants!)
 {
-                <tr>
+                <tr class="plant" data-family="@item.Family" data-genus="@item.Genus" data-species="@item.Species" data-origin="@item.Origin">
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
@@ -310,6 +358,59 @@
     </table>
     </div>
     </div>
+
+    <script>
+        function toggleFilters() {
+            var searchFields = document.getElementsByClassName("searchFields")[0];
+            searchFields.style.display = searchFields.style.display === "none" ? "block" : "none";
+            var submitButton = document.getElementsByClassName("submit-button")[0];
+            submitButton.style.display = submitButton.style.display === "" ? "none" : "";
+                }
+
+        function checkFilters() {
+            var genusInput = document.getElementById("genusInput").value.trim();
+            var speciesInput = document.getElementById("speciesInput").value.trim();
+            var originInput = document.getElementById("originInput").value.trim();
+            return genusInput !== "" || speciesInput !== "" || originInput !== "";
+        }
+
+        function searchPlants() {
+            var genusInput = document.getElementById("genusInput").value.trim().toLowerCase();
+            var speciesInput = document.getElementById("speciesInput").value.trim().toLowerCase();
+            var originInput = document.getElementById("originInput").value.trim().toLowerCase();
+            var plants = document.getElementsByClassName("plant");
+
+            for (var i = 0; i < plants.length; i++) {
+                var plant = plants[i];
+                var genus = plant.getAttribute("data-genus").toLowerCase();
+                var species = plant.getAttribute("data-species").toLowerCase();
+                var origin = plant.getAttribute("data-origin").toLowerCase();
+
+                if ((genusInput === "" || genus.includes(genusInput)) &&
+                    (speciesInput === "" || species.includes(speciesInput)) &&
+                    (originInput === "" || origin.includes(originInput))) {
+                    plant.style.display = "";
+                } else {
+                    plant.style.display = "none";
+                }
+            }
+
+            var clearFiltersButton = document.getElementById("clearFiltersButton");
+            if (checkFilters()) {
+                clearFiltersButton.style.display = "inline-block";
+            } else {
+                clearFiltersButton.style.display = "none";
+            }
+        }
+
+        function clearFilters() {
+            document.getElementById("genusInput").value = "";
+            document.getElementById("speciesInput").value = "";
+            document.getElementById("originInput").value = "";
+            searchPlants();
+            document.getElementById("clearFiltersButton").style.display = "none";
+        }
+    </script>
 
 </body>
 </html>
