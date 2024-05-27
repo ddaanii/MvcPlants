@@ -21,52 +21,12 @@ public static class SeedData
             }
             context.Plant.AddRange(
                 new Plant
-                {	
-                   	Name = "Basella alba",
-                    ImgPath = "https://d2seqvvyy3b8p2.cloudfront.net/018d7852a70888b5e71815b778ac1576.jpg",
-                    Family = "Basellaceae",
-                    Genus = "Basella",
-                    Species = "Basella alba",
-                    Origin = "Bangladesh",
-
-                },
-                new Plant
-                {	
-                   	Name = "Digitalis purpurea",
-                    ImgPath = "https://storage.googleapis.com/powop-assets/kew_profiles/KPPCONT_034322_fullsize.jpg",
-                    Family = "Plantaginaceae",
-                    Genus = "Digitalis",
-                    Species = "Digitalis purpurea",
-                    Origin = "Belgium",
-
-                },
-                new Plant
-                {	
-                   	Name = "Alismataceae",
-                    ImgPath = "https://storage.googleapis.com/powop-assets/kew_profiles/STAG_001842_fullsize.jpg",
-                    Family = "Alismataceae",
-                    Genus = "",
-                    Species = "",
-                    Origin = "",
-
-                },
-                new Plant
-                {	
-                   	Name = "Adenophora",
-                    ImgPath = "https://d2seqvvyy3b8p2.cloudfront.net/b31d5146b57ff2a6d1292f70f4be94ad.jpg",
-                    Family = "Campanulaceae",
-                    Genus = "Adenophora",
-                    Species = "",
-                    Origin = "Altay",
-
-                },
-                new Plant
                 {
-                    Name = "Amaryllis Belladonna",
+                    Name = "Amaryllis",
                     ImgPath = "https://d2seqvvyy3b8p2.cloudfront.net/e48e1d7de52513832ac891b9d3453e43.jpg",
                     Family = "Amaryllidaceae",
                     Genus = "Amaryllis",
-                    Species = "",
+                    Species = "Amaryllis Belladonna",
                     Origin = "Cape Provinces",
 
                 },
@@ -82,13 +42,61 @@ public static class SeedData
                 },
                 new Plant
                 {
-                    Name = "Hydrangea Macrophylla",
+                    Name = "Hydrangea",
                     ImgPath = "https://d2seqvvyy3b8p2.cloudfront.net/b611b123fbf99bbc43475008c7d09fdb.jpg",
                     Family = "Hydrangeaceae",
                     Genus = "Hydrangea",
-                    Species = "Macrophylla",
+                    Species = "Hydrangea Macrophylla",
                     Origin = "Japan",
 
+                },
+                new Plant
+                {
+                    Name = "Poppy",
+                    ImgPath = "https://rachelchoflowers.com/wp-content/uploads/2019/09/Learn-About-Augusts-Birth-Flower-1-scaled.jpeg",
+                    Family = "Papaveraceae",
+                    Genus = "Papaver",
+                    Species = "Papaver Rhoeas",
+                    Origin = "Europe",
+
+                },
+                new Plant
+                {
+                    Name = "Foxglove",
+                    ImgPath = "https://storage.googleapis.com/powop-assets/kew_profiles/KPPCONT_034322_fullsize.jpg",
+                    Family = "Plantaginaceae",
+                    Genus = "Digitalis",
+                    Species = "Digitalis Purpurea",
+                    Origin = "Belgium",
+
+                },
+                new Plant
+                {
+                    Name = "Dahlia",
+                    ImgPath = "https://images.pexels.com/photos/326014/pexels-photo-326014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    Family = "Asteraceae",
+                    Genus = "Dahlia",
+                    Species = "Ball Dahlia",
+                    Origin = "Mexico",
+
+                },
+                new Plant
+                {
+                    Name = "Lavender",
+                    ImgPath = "https://images.pexels.com/photos/414949/pexels-photo-414949.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    Family = "Lamiaceae",
+                    Genus = "Lavandula",
+                    Species = "",
+                    Origin = "Europe",
+                },
+                new Plant
+                {
+                    Name = "Fire Lily",
+                    ImgPath = "https://images.pexels.com/photos/17454553/pexels-photo-17454553/free-photo-of-fire-lily-flower.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    Family = "Amaryllidaceae",
+                    Genus = "Cyrtanthus",
+                    Species = "Cyrtanthus Ventricosus",
+                    Origin = "South Africa",
                 }
             );
             context.SaveChanges();
