@@ -14,6 +14,8 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<link href='https://fonts.googleapis.com/css?family=GFS Didot' rel='stylesheet'>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 	    <style type="text/css">
 	    	body{
 	    		background-color: antiquewhite;
@@ -143,12 +145,16 @@
 			  transform: scale(1.2);
 			}
 
+			figure:hover a{
+				z-index: 30 !important;
+			}
+
 
 			.cool-title h3 {
 			  font-size:10rem; font-weight:500; text-transform:uppercase; margin-top:2rem; font-family: 'didot', serif;
 			}
 			.cool-title h3:before {
-			    background-color: #c50000;
+			    background-color: crimson;
 			    border-radius: 0.25rem;
 			    content: '';
 			    display: block;
@@ -195,7 +201,6 @@
 @foreach (var item in Model.Plants!){
 					<figure>
 						<img src="@item.ImgPath">
-						<a asp-controller="Plants" asp-action="Details" asp-route-id="@item.Id"></a>
 						<figcaption>
 							<p class="short-name">@item.Name</p>
 							<p class="full-name">
