@@ -40,7 +40,6 @@ namespace MvcPlants.Controllers
             PlantFamilyViewModel plantFamily = new PlantFamilyViewModel();
             plantFamily.Plants = originalList;
 
-
             return View(plantFamily);
         }
 
